@@ -1,0 +1,30 @@
+#data-description {
+  background-color: rgba(0, 40, 85, 0.5);
+  min-height: 200px;
+  margin-top: 50px;
+}
+
+#content-container {
+  margin-top: 25px;
+}
+
+.btn {
+  margin-top: 5px;
+  background-color: #002855;
+  border-color: #FFCD00;
+  color: #FFCD00; 
+}
+
+.data-description-content {
+  padding: 10px;
+}
+
+.panel-default {
+  background-color: rgba(0, 40, 85, 0.5);
+}
+
+.panel-table {
+  display: inline-block;
+}
+
+

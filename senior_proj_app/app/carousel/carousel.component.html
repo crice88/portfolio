@@ -1,0 +1,11 @@
+<div id="carousel">  
+  <carousel>
+    <slide *ngFor="let component of carouselComponents">
+        <img src="{{component.pictureSource}}" alt="{{component.altText}}">
+        <div class="carousel-caption d-none d-md-block">
+          <h1 class="h1">{{component.title}}</h1>
+          <p>{{component.body}}</p>
+        </div>
+    </slide>
+  </carousel>
+</div>

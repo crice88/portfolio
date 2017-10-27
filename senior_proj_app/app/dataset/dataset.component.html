@@ -1,0 +1,57 @@
+<section id="data-description">
+  <div id="content-container">
+    <div class="data-description-content" *ngIf="dataset">
+      <h2 class="h2">{{dataset.title}} Description</h2>
+      <p>
+        {{dataset.description}}
+      </p>
+    </div>
+  </div>
+</section>
+<div id="content-container" *ngIf="dataset">
+  <section id="content-container">
+    <div class="h2">
+      Dataset Preview
+    </div>
+    <div class="row">
+      <div class="panel panel-table">
+        <div class="panel-body">
+          <chart-google [dataset]="dataset" chartType="TableChart"></chart-google>
+        </div>
+      </div>
+    </div>
+    <h2 class="h2">Available Dataset Charts</h2>
+    <div class="row">
+      <div *ngFor="let chartType of chartTypes" [ngSwitch]="chartType.chartName">
+        <div class="panel col-md-5" *ngSwitchCase="'MapChart'">
+            <div class="panel-body">
+              <chart-map [dataset]="dataset"></chart-map>
+              <a routerLink="{{baseRouteUrl}}/{{dataset.id}}/{{chartType.chartName}}">
+                <button class="btn btn-default">View</button>
+              </a>
+            </div>
+        </div>
+        <div class="panel col-md-5" *ngSwitchDefault>
+            <div class="panel-body">
+              <chart-google [dataset]="dataset" [chartType]="chartType.chartName"></chart-google>
+              <a routerLink="{{baseRouteUrl}}/{{dataset.id}}/{{chartType.chartName}}">
+                <button class="btn btn-default">View</button>
+              </a>
+            </div>
+          </div>
+        <!-- <div class="panel col-md-9" *ngSwitchDefault>
+          <div class="panel-body">
+            Invalid chart type found!
+          </div>
+        </div> -->
+      </div> <!-- end of *ngFor -->
+      <div class="panel col-md-9" *ngIf="chartTypes?.length == 0">
+        <div class="panel-body">
+            No dataset charts available.
+        </div>
+      </div>
+    </div>
+    <dataset-featured datasetName="About" title="About this Dataset"></dataset-featured>
+    <dataset-featured datasetName="Related" title="Related Datasets"></dataset-featured>
+  </section>
+</div>

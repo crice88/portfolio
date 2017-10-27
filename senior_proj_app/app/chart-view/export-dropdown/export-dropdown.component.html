@@ -1,0 +1,11 @@
+<div class="btn-group" dropdown>
+  <button dropdownToggle type="button" class="btn btn-default dropdown-toggle">
+    <div class="dropdown-option-type">Download Dataset As... <span class="caret"></span></div>
+  </button>
+  <ul *dropdownMenu class="dropdown-menu" role="menu">
+    <li role="menuitem"><a class="dropdown-item" href="file:" (click)="download('csv')">CSV (.csv)</a></li>
+    <li role="menuitem"><a class="dropdown-item" href="file:" (click)="download('xls')">Excel '97-'03 (.xls)</a></li>
+    <li role="menuitem"><a class="dropdown-item" href="file:" (click)="download('xlsx')">Excel '07-Present (.xlsx)</a></li> 
+    <li role="menuitem"><a class="dropdown-item" href="file:" (click)="download('pdf')">PDF (.pdf)</a></li>
+  </ul>
+</div>

@@ -1,0 +1,19 @@
+<!-- TODO: Modularize the switch statement so it can be used in other components. -->
+<div id="content-container" *ngIf="datasetId && chartType">
+  <div [ngSwitch]="chartType">
+    <div *ngSwitchCase="'MapChart'">
+        <chart-map [datasetId]="datasetId"></chart-map>
+    </div>
+    <div *ngSwitchDefault>
+      <chart-google [datasetId]="datasetId" [chartType]="chartType" enableStaticImage="true" enableControls="true"></chart-google>
+    </div>
+  </div>
+  <div class="drop-down-export">
+    <export-dropdown [datasetId]="datasetId"></export-dropdown>
+    <button *ngIf="chartType !== 'MapChart' && chartType !== 'TableChart'" class="btn btn-lg img-btn" (click)="saveImage()">Download Chart as Image (.png)</button>      
+    <button *ngIf="chartType !== 'MapChart' && chartType !== 'TableChart'" class="btn btn-lg" (click)="openEditor()">Customize and Edit Chart</button>    
+    <button class="btn btn-lg btn-back" (click)="back()">Back</button> 
+  </div>   
+</div>
+
+

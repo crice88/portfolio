@@ -1,0 +1,23 @@
+input {
+  padding: 8px;
+}
+
+.btn {
+  margin-top: 5px;
+  background-color: #002855;
+  border-color: #FFCD00;
+  color: #FFCD00; 
+}
+
+.inputBox {
+  color: black;
+}
+
+.row {
+  margin-left: 10px;
+}
+
+.blankField mark {
+  background-color: #FFCD00;
+  color: red;
+}

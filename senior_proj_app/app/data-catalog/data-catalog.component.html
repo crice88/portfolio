@@ -1,0 +1,49 @@
+<div id="content-container">
+  <div class="row">
+    <div class="panel panel-default col-md-2 options-min-width">
+      <div class="panel-header">
+        <h3 class="h3">Search Options</h3>
+      </div>
+      <div class="panel-body">
+        <div class="btn-group col-md-offset-1" dropdown>
+          <button dropdownToggle type="button" class="btn btn-default dropdown-toggle">
+            <div class="dropdown-option-type">Categories <span class="caret"></span></div>
+          </button>
+          <ul *dropdownMenu class="dropdown-menu" role="menu">
+            <li role="menuitem"><a class="dropdown-item" href="#">Income</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Race</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Religion</a></li>
+          </ul>
+        </div>
+        <div class="btn-group col-md-offset-1" dropdown>
+          <button dropdownToggle type="button" class="btn btn-default dropdown-toggle">
+            <div class="dropdown-option-type">View Types <span class="caret"></span></div>
+          </button>
+          <ul *dropdownMenu class="dropdown-menu" role="menu">
+            <li role="menuitem"><a class="dropdown-item" href="#">Bar Chart</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Line Chart</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Map</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">Pie Chart</a></li>
+          </ul>
+        </div>
+        <div class="btn-group col-md-offset-1" dropdown>
+          <button dropdownToggle type="button" class="btn btn-default dropdown-toggle">
+            <div class="dropdown-option-type">Tags <span class="caret"></span></div>
+          </button>
+          <ul *dropdownMenu class="dropdown-menu" role="menu">
+            <li role="menuitem"><a class="dropdown-item" href="#">crime</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">hispanic</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">lgbtq</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#">population</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <data-catalog-link 
+        *ngFor="let dataset of datasets" 
+        [dataset]="dataset">
+      </data-catalog-link>        
+    </div>
+  </div>
+</div>

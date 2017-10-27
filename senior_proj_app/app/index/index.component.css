@@ -1,0 +1,17 @@
+.panel {
+  padding: 8px;
+  margin-left: 40px;
+}
+
+#carousel {
+  margin-top: 50px;
+}
+
+#content-container {
+  margin-top: 25px;
+}
+
+#simple-search {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

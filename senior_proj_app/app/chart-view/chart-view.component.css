@@ -1,0 +1,22 @@
+#content-container {
+  text-align: center;
+}
+
+.btn {
+  background-color: #002855;
+  border-color: #FFCD00;
+  color: #FFCD00; 
+}
+
+.btn-back {
+  margin-left: 10px;
+}
+
+.img-btn {
+  margin-left: 10px;
+}
+
+.drop-down-export {
+  padding: 10px;
+  margin-top: 10px;
+}

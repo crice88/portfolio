@@ -1,0 +1,8 @@
+/* Local style */
+li a:visited {
+  background-color: #002855;
+}
+
+.navbar-toggle {
+  border-color: #FFCD00;
+}

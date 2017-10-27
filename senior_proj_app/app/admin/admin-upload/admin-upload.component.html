@@ -1,0 +1,33 @@
+<div class="col-md-3 form-group">
+  <label for="tableName">Dataset Name</label>
+  <input #tableNameTextbox class="inputBox form-control" type="text" placeholder={{initialValue}} 
+    id="tableName" required>
+  <label for="title">Dataset Title</label>
+  <input #titleTextbox class="inputBox form-control" type="text" placeholder="Enter dataset title"
+    id="title" required>
+</div>
+<div class="col-md-9 form-group">
+  <label for="descriptionText">Dataset Description</label>
+  <textarea #descriptionTextbox class="inputBox form-control" type="text" rows="5" 
+    placeholder="Enter dataset description" id="descriptionText" required></textarea>
+</div>
+<div class="col-md-offset-3 col-md-4">
+  <input class="btn btn-lg" id="fileUpload" name="file" type="file" 
+    (change)="fileUpload($event)" placeholder="Upload File" accept=".csv,.xls,.xlsx" />
+</div>
+<div class="col-md-5">
+  <button type="button" class="btn btn-lg" 
+    (click)="submitFile(tableNameTextbox.value, descriptionTextbox.value, titleTextbox.value)">
+      Submit
+  </button>
+</div>
+<div *ngIf="missingField" class="blankField">
+  <mark>
+    <strong>One of the fields is blank. Please double check that all fields are filled in.</strong>
+  </mark>
+</div>
+<div *ngIf="result" style="margin-top: 10px;">
+  <p>
+    {{result}}
+  </p>
+</div>

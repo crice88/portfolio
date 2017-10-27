@@ -1,0 +1,20 @@
+<!-- <agm-map [latitude]="centerLat" [longitude]="centerLng" (mapClick)="changeZoom()">   -->
+
+<div *ngIf="datasetObjects">
+  <agm-map [fitBounds]="bounds" (mapReady)="handleOnLoadTasks($event)"> <!-- mapReady may replace the map-update component -->
+    <!-- <div *ngFor="let location of healthLocations">
+      <agm-marker [latitude]="location.lat()" [longitude]="location.lng()" [visible]="showMarkers"></agm-marker>  
+    </div> -->
+    <!-- <marker-cluster [points]="locations"></marker-cluster>   -->
+  </agm-map> 
+</div>
+
+<button class="btn" (click)="toggleHeatMap()">
+  <div *ngIf="isHeatMap">Turn Off Heat Map</div>
+  <div *ngIf="!isHeatMap">Turn On Heat Map</div>
+</button>
+<button class="btn" (click)="toggleMarkers()">
+  <div *ngIf="isToggleMarkers">Turn Off Marker Clusters</div>
+  <div *ngIf="!isToggleMarkers">Turn On Marker Clusters</div>
+</button>
+

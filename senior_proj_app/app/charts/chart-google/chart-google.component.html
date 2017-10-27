@@ -1,0 +1,12 @@
+<div [id]="chartType" 
+    [chartData]="chartData" 
+    [chartOptions]= "chartOptions" 
+    [chartType]="realChartType" 
+    [enableStaticImage]="enableStaticImage" 
+    [enableControls]="enableControls"
+    [divIds]="controlWrapperDivIds"
+GoogleChart></div>
+
+<div *ngFor="let id of controlWrapperDivIds">
+    <div [id]="id"></div>
+</div>

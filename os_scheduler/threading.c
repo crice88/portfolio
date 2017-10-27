@@ -135,21 +135,21 @@ int create_thread(void(*f)(void))
     t->pc = pc;
     t->sp = sp;
     t->stat = s;
-	t->func = f;
-	t->weight = (rand() % 10) + 1;
-	t->arg = NULL;
+    t->func = f;
+    t->weight = (rand() % 10) + 1;
+    t->arg = NULL;
     t->prev = NULL;
     t->next = NULL;
 	
-	// Insert at head if list is empty.
-	if (STAILQ_EMPTY(&ready_head))
-	{
+    // Insert at head if list is empty.
+    if (STAILQ_EMPTY(&ready_head))
+    {
 		STAILQ_INSERT_HEAD(&ready_head, t, ready_queue);
-	}
-	else
-	{
+    }
+    else
+    {
 		STAILQ_INSERT_TAIL(&ready_head, t, ready_queue);
-	}
+    }
       
     return thread_id;
 }
@@ -188,7 +188,7 @@ int delete_thread(int thread_id)
         return -1;
     }
     
-	STAILQ_REMOVE(&ready_head, t, tcb, ready_queue);
+    STAILQ_REMOVE(&ready_head, t, tcb, ready_queue);
 	
     free(t);
     t = NULL;
@@ -249,9 +249,9 @@ void g(void)
         {
             printf("g: switching\n");
             i = 0;
-			t->stat->exec_time += TIME_INCREMENT;
-			t->state = Waiting;
-			printf("Thread %d is waiting\n", get_my_id());
+	    	t->stat->exec_time += TIME_INCREMENT;
+	    	t->state = Waiting;
+            printf("Thread %d is waiting\n", get_my_id());
             yield_cpu();           
         }
 		
@@ -268,7 +268,7 @@ void g(void)
 */ 
 void* h(void *args)
 {	   
-	if (args == NULL)
+    if (args == NULL)
     {
         return NULL;
     }
@@ -282,21 +282,21 @@ void* h(void *args)
 void context_switch(void)
 {
     struct tcb *t;
-	struct tcb *t1;
+    struct tcb *t1;
     int ret_val;
 	
-	t = STAILQ_FIRST(&ready_head);
+    t = STAILQ_FIRST(&ready_head);
 	
-	ret_val = sigsetjmp(t->jbuf,1); 
+    ret_val = sigsetjmp(t->jbuf,1); 
     
-	if (ret_val == 1) 
+    if (ret_val == 1) 
     {
         return;
     }
 	
-	t1 = STAILQ_NEXT(t, ready_queue);
+    t1 = STAILQ_NEXT(t, ready_queue);
 	
-	siglongjmp(t1->jbuf,1);
+    siglongjmp(t1->jbuf,1);
 }
 
 /*
@@ -307,12 +307,12 @@ struct tcb* get_thread(int thread_id)
     struct tcb *temp = NULL;
        
     STAILQ_FOREACH(temp, &ready_head, ready_queue)
-	{
+    {
 		if (temp->tid == thread_id)
 		{
 			return temp;
 		}
-	}
+    }
        
     return NULL;
 }
@@ -326,12 +326,12 @@ struct tcb* get_thread_w_args(int thread_id)
     struct tcb *temp = NULL;
        
     STAILQ_FOREACH(temp, &ready_head, ready_queue)
-	{
+    {
 		if (temp->tid == thread_id && temp->arg != NULL)
 		{
 			return temp;
 		}
-	}
+    }
        
     return NULL;
 }
@@ -341,14 +341,14 @@ struct tcb* get_thread_w_args(int thread_id)
 */   
 int get_my_id(void)
 {	
-	struct tcb *t;
+    struct tcb *t;
 	
-	t = STAILQ_FIRST(&ready_head);
+    t = STAILQ_FIRST(&ready_head);
 	
-	if (t == NULL)
-	{
+    if (t == NULL)
+    {
 		return -1;
-	}
+    }
 
     return t->tid;
 }
@@ -359,13 +359,13 @@ int get_my_id(void)
 */   
 void go(void)
 {        
-	while(true) 
+    while(true) 
     {
 		int ret_result;
-        struct tcb *t = NULL;
+		struct tcb *t = NULL;
 		struct tcb *t1 = NULL;
 		void *ret_val;
-		
+
 		printf("\n****** Values of threads with arguments ******\n\n");
 		
 		// Get return values of each thread created with an argument.
@@ -398,16 +398,16 @@ void go(void)
 			// Since thread doesn't return, just exit unsuccessfully if tickets
 			// can't be malloced.
 			tickets = malloc(total_weight * sizeof(int));
-            if (tickets == NULL)
-            {
-                exit(EXIT_FAILURE);
-            }
+			if (tickets == NULL)
+			{
+				exit(EXIT_FAILURE);
+			}
 
 			if (give_tickets())
 			{
 				exit(EXIT_FAILURE);
 			}
-			
+
 			t = STAILQ_FIRST(&ready_head);
 			if (t == NULL)
 			{
@@ -416,16 +416,16 @@ void go(void)
 		}
 		
 		// Jump into thread that is first in the ready queue.
-        ready = true;
+		ready = true;
 		printf("Threads are ready for dispatch\n");
-        t->state = Running;
+		t->state = Running;
 		siglongjmp(t->jbuf, 1);
     }
 }
 
 /*
-	Called by timer. Handles dispatch of each thread in queue according to
-	schedule_type selected.
+Called by timer. Handles dispatch of each thread in queue according to
+schedule_type selected.
 */   
 void dispatch(int sig)
 {
@@ -433,69 +433,68 @@ void dispatch(int sig)
        
     if (ready)
     {
-		// Add wait time to processes currently not running
-		add_wait_time();		
+	// Add wait time to processes currently not running
+	add_wait_time();		
 	
-		if(cpu_scheduling == RoundRobin)
+	if(cpu_scheduling == RoundRobin)
         {
-			t = STAILQ_FIRST(&ready_head);
-			if (t == NULL)
+	    t = STAILQ_FIRST(&ready_head);
+	    if (t == NULL)
+	    {
+		exit(EXIT_FAILURE);
+	    }
+			
+	    t->stat->bursts += 1;
+			
+            // Suspend a random thread every 10 total loops.
+	    if (total_loops % 2 == 0)
+	    {
+		if (suspend_thread(0) == -1)//rand() % number_of_running_threads) == -1)
+		{
+	    	    exit(EXIT_FAILURE);
+		}
+		number_of_running_threads--;
+	    }
+			
+	    // Resume a random thread every 12 total loops.
+	    if (total_loops % 3 == 0)
+	    {
+			if (resume_thread(0) == -1)//rand() % number_of_running_threads) == -1)
+			{
+					exit(EXIT_FAILURE);
+			}
+			number_of_running_threads++;
+	    }
+		if (ready_dequeue())
+		{
+			exit(EXIT_FAILURE);
+		}
+    }
+	else
+	{
+		t = STAILQ_FIRST(&ready_head);
+		t->stat->bursts += 1;
+
+		if (total_loops % 5 == 0)
+		{
+			if (suspend_thread(rand() % number_of_running_threads) == -1)
 			{
 				exit(EXIT_FAILURE);
 			}
+			number_of_running_threads--;
+		}
 			
-			t->stat->bursts += 1;
-			
-			// Suspend a random thread every 10 total loops.
-			if (total_loops % 2 == 0)
-			{
-				if (suspend_thread(0) == -1)//rand() % number_of_running_threads) == -1)
-				{
-					exit(EXIT_FAILURE);
-				}
-				number_of_running_threads--;
-			}
-			
-			// Resume a random thread every 12 total loops.
-			if (total_loops % 3 == 0)
-			{
-				if (resume_thread(0) == -1)//rand() % number_of_running_threads) == -1)
-				{
-					exit(EXIT_FAILURE);
-				}
-				number_of_running_threads++;
-			}
-			if (ready_dequeue())
+		// Resume a random thread every 12 total loops.
+		if (total_loops % 7 == 0)
+		{
+			if (resume_thread(0) == -1)
 			{
 				exit(EXIT_FAILURE);
 			}
-        }
-        else
-        {
-			t = STAILQ_FIRST(&ready_head);
-			t->stat->bursts += 1;
-			
-			if (total_loops % 5 == 0)
-			{
-				if (suspend_thread(rand() % number_of_running_threads) == -1)
-				{
-					exit(EXIT_FAILURE);
-				}
-				number_of_running_threads--;
-			}
-			
-			// Resume a random thread every 12 total loops.
-			if (total_loops % 7 == 0)
-			{
-				if (resume_thread(0) == -1)//rand() % number_of_running_threads) == -1)
-				{
-					exit(EXIT_FAILURE);
-				}
-				number_of_running_threads++;
-			}
-			
-			lottery();
-        }
+			number_of_running_threads++;
+		}		
+		lottery();
+		}
     }
 }
 
@@ -504,11 +503,11 @@ void lottery(void)
     int ticket = 0;
     int upper_bound = 0;
     int winner = 0;
-	struct tcb *t;
-	struct tcb *temp;
+    struct tcb *t;
+    struct tcb *temp;
     
-	// Get the winning ticket. Number of ticket will indicate
-	// thread id of process that won.
+    // Get the winning ticket. Number of ticket will indicate
+    // thread id of process that won.
     upper_bound = (total_weight - 1);
     ticket = random_bounded(upper_bound);
 
@@ -516,15 +515,15 @@ void lottery(void)
 	
     // Insert winning thread at the head of the list.
     t = get_thread(winner);
-	if (t == NULL)
-	{
+    if (t == NULL)
+    {
 		printf("Thread %d is not in the ready queue and cannot be scheduled.\n", winner);
-	}
-	else
-	{
-		STAILQ_REMOVE(&ready_head, t, tcb, ready_queue);
+    }
+    else
+    {
+    	STAILQ_REMOVE(&ready_head, t, tcb, ready_queue);
 		STAILQ_INSERT_HEAD(&ready_head, t, ready_queue);
-	}
+    }
 }
 
 void add_wait_time()
@@ -533,10 +532,10 @@ void add_wait_time()
 	
 	STAILQ_FOREACH(t, &ready_head, ready_queue)
 	{
-		if (t->state == Waiting)
-		{
+    	if (t->state == Waiting)
+	    {
 			t->stat->wait_time += TIME_INCREMENT;
-		}
+	    }
 	}
 }
 
@@ -568,34 +567,34 @@ void yield_cpu(void)
 int suspend_thread(int thread_id)
 {
     struct tcb *t;
-	struct tcb *temp;
+    struct tcb *temp;
     
     t = get_thread(thread_id);
-	temp = STAILQ_FIRST(&ready_head);
-	if (t == NULL)
-	{
-		printf("Thread %d could not be suspended.\n", thread_id);
+    temp = STAILQ_FIRST(&ready_head);
+    if (t == NULL)
+    {
+    	printf("Thread %d could not be suspended.\n", thread_id);
 		return 0;
-	}
-	if (temp == NULL)
-	{
-		return -1;
-	}
-	if (temp->tid == thread_id)
-	{
-		STAILQ_INSERT_HEAD(&sleeping_head, t, sleeping_queue);
+    }
+    if (temp == NULL)
+    {
+    	return -1;
+    }
+    if (temp->tid == thread_id)
+    {
+    	STAILQ_INSERT_HEAD(&sleeping_head, t, sleeping_queue);
 		STAILQ_REMOVE(&ready_head, t, tcb, ready_queue);
 		printf("Thread %d was suspended.\n", thread_id);
 		yield_cpu();
-	}
-	else
-	{
+    }
+    else
+    {
 		STAILQ_INSERT_HEAD(&sleeping_head, t, sleeping_queue);
 		STAILQ_REMOVE(&ready_head, t, tcb, ready_queue);
 		printf("Thread %d was suspended.\n", thread_id);
-	}
+    }
 
-	return thread_id;
+    return thread_id;
 }
 
 /*
@@ -605,31 +604,31 @@ int suspend_thread(int thread_id)
 int resume_thread(int thread_id)
 {
     struct tcb *t = NULL;
-	struct tcb *temp = NULL;
-	bool found = false;
+    struct tcb *temp = NULL;
+    bool found = false;
 	
-	STAILQ_FOREACH(t, &sleeping_head, sleeping_queue)
+    STAILQ_FOREACH(t, &sleeping_head, sleeping_queue)
+    {
+    	if (t->tid == thread_id)
 	{
-		if (t->tid == thread_id)
-		{
-			STAILQ_INSERT_TAIL(&ready_head, t, ready_queue);
-			STAILQ_REMOVE(&sleeping_head, t, tcb, sleeping_queue);
-			found = true;
-			temp = t;
-		}
+    	    STAILQ_INSERT_TAIL(&ready_head, t, ready_queue);
+	    STAILQ_REMOVE(&sleeping_head, t, tcb, sleeping_queue);
+	    found = true;
+	    temp = t;
 	}
+    }
 	
-	if (found)
-	{
-		printf("Thread %d was resumed\n", thread_id);
-		temp->state = Ready;
-	}
-	else
-	{
-		printf("Thread %d was not in sleeping queue.\n", thread_id);
-	}
+    if (found)
+    {
+	printf("Thread %d was resumed\n", thread_id);
+	temp->state = Ready;
+    }
+    else
+    {
+    	printf("Thread %d was not in sleeping queue.\n", thread_id);
+    }
 	
-	return thread_id;
+    return thread_id;
 }
 
 /*
@@ -656,7 +655,7 @@ int get_status(int thread_id, struct status *stat)
     stat->avg_exec_time = (t->stat->exec_time / number_of_running_threads);
     stat->avg_wait_time = (t->stat->wait_time / number_of_running_threads);
 	
-	t->stat = stat;
+    t->stat = stat;
      
     return t->tid;
 }
@@ -666,23 +665,23 @@ int get_status(int thread_id, struct status *stat)
 */
 int get_sleep_thread_status(struct tcb *t, struct status *stat)
 {
-	if (t == NULL)
-	{
-		return -1;
-	}
+    if (t == NULL)
+    {
+        return -1;
+    }
 	
-	if (stat == NULL)
-	{
-		return -1;
-	}
+    if (stat == NULL)
+    {
+        return -1;
+    }
 	
-	stat->bursts = t->stat->bursts;
+    stat->bursts = t->stat->bursts;
     stat->exec_time = t->stat->exec_time;
     stat->sleep_time = t->stat->sleep_time;
     stat->avg_exec_time = (t->stat->exec_time / number_of_running_threads);
     stat->avg_wait_time = (t->stat->wait_time / number_of_running_threads);
 	
-	t->stat = stat;
+    t->stat = stat;
      
     return t->tid;
 }
@@ -733,7 +732,7 @@ void clean_up(int sig)
 	// Free threads in sleeping queue.
 	if (!STAILQ_EMPTY(&sleeping_head))
 	{
-		STAILQ_FOREACH(sleep, &sleeping_head, sleeping_queue)
+	    STAILQ_FOREACH(sleep, &sleeping_head, sleeping_queue)
 		{
 			if (get_sleep_thread_status(sleep, &s) == -1)
 			{

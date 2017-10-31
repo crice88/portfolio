@@ -7,7 +7,7 @@ typedef enum
     Sleeping,
     Suspended,
     Waiting,
-	Finished
+		Finished
 } thread_state;
 
 typedef enum
@@ -20,24 +20,24 @@ struct tcb
 {
     struct status *stat;
     int tid;
-	int weight;
+		int weight;
     thread_state state;
     address_t pc;
     address_t sp;
     sigjmp_buf jbuf;
-	void *arg;
-	void *func;
+		void *arg;
+		void *func;
     struct tcb *next;
     struct tcb *prev;
-	STAILQ_ENTRY(tcb) ready_queue;
-	STAILQ_ENTRY(tcb) sleeping_queue;
+		STAILQ_ENTRY(tcb) ready_queue;
+		STAILQ_ENTRY(tcb) sleeping_queue;
 };
    
 struct status
 {
     int bursts;
     long exec_time;
-	long wait_time;
+		long wait_time;
     long sleep_time;
     long avg_exec_time;
     long avg_wait_time;

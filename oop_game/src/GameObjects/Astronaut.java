@@ -42,16 +42,16 @@ public class Astronaut extends Opponents implements IDrawable, ISelectable
         
         if (this.health > 0)
         {
-        	int new_red = (STARTING_HEALTH - this.health) * 51;
-        	this.setColor(ColorUtil.argb(UPPER_BOUND_COLOR, UPPER_BOUND_COLOR, new_red, new_red));
+          int new_red = (STARTING_HEALTH - this.health) * 51;
+          this.setColor(ColorUtil.argb(UPPER_BOUND_COLOR, UPPER_BOUND_COLOR, new_red, new_red));
             this.setSpeed(this.health * ASTRO_SPEED_CONST);
         }
         else
         {
-        	this.health = 0;
-        	this.setDirection(0);
-        	this.setSpeed(0);
-        	this.setColor(ColorUtil.argb(UPPER_BOUND_COLOR, UPPER_BOUND_COLOR, 229, 204));
+          this.health = 0;
+          this.setDirection(0);
+          this.setSpeed(0);
+          this.setColor(ColorUtil.argb(UPPER_BOUND_COLOR, UPPER_BOUND_COLOR, 229, 204));
         }
     }
     
@@ -87,10 +87,10 @@ public class Astronaut extends Opponents implements IDrawable, ISelectable
      */
     public void move(int e, int height, int width)
     {
-    	if (this.health > 0)
-    	{
-    		super.move(e);
-    	}
+      if (this.health > 0)
+      {
+        super.move(e);
+      }
     }
     
     /**
@@ -101,29 +101,29 @@ public class Astronaut extends Opponents implements IDrawable, ISelectable
      */
     public void draw(Graphics g, Point pCmpRelPrnt)
     {	
-    	int bottomLeftX = (int) (pCmpRelPrnt.getX() + this.getLocationX());
-    	int bottomLeftY = (int) (pCmpRelPrnt.getY() + this.getLocationY());
-    	int bottomRightX = (int) (pCmpRelPrnt.getX() + this.getLocationX()) + this.getSize();
-    	int bottomRightY = (int) (pCmpRelPrnt.getY() + this.getLocationY());
-    	int topX = (int) (pCmpRelPrnt.getX() + this.getLocationX()) + (this.getSize() / 2);
-    	int topY = (int) (pCmpRelPrnt.getY() + this.getLocationY()) + this.getSize();
-    	
-    	int[] xPoints = { bottomLeftX, bottomRightX, topX };
-    	int[] yPoints = { bottomLeftY, bottomRightY, topY };
-    	
-    	g.setColor(this.getColor());
-    	g.drawRect(pCmpRelPrnt.getX() + (int) this.getLocationX(), pCmpRelPrnt.getY() + (int) this.getLocationY(), 
-  			  	   super.getSize(), super.getSize(), 0);
-    	
-    	// Check if the object is selected. If it is, fill it in.
-    	if (this.isSelected())
-    	{
-    		g.fillPolygon(xPoints, yPoints, NUM_POINTS_TRIANGLE);
-    	}
-    	else
-    	{
-        	g.drawPolygon(xPoints, yPoints, NUM_POINTS_TRIANGLE);
-    	}
+      int bottomLeftX = (int) (pCmpRelPrnt.getX() + this.getLocationX());
+      int bottomLeftY = (int) (pCmpRelPrnt.getY() + this.getLocationY());
+      int bottomRightX = (int) (pCmpRelPrnt.getX() + this.getLocationX()) + this.getSize();
+      int bottomRightY = (int) (pCmpRelPrnt.getY() + this.getLocationY());
+      int topX = (int) (pCmpRelPrnt.getX() + this.getLocationX()) + (this.getSize() / 2);
+      int topY = (int) (pCmpRelPrnt.getY() + this.getLocationY()) + this.getSize();
+      
+      int[] xPoints = { bottomLeftX, bottomRightX, topX };
+      int[] yPoints = { bottomLeftY, bottomRightY, topY };
+      
+      g.setColor(this.getColor());
+      g.drawRect(pCmpRelPrnt.getX() + (int) this.getLocationX(), pCmpRelPrnt.getY() + (int) this.getLocationY(), 
+               super.getSize(), super.getSize(), 0);
+      
+      // Check if the object is selected. If it is, fill it in.
+      if (this.isSelected())
+      {
+        g.fillPolygon(xPoints, yPoints, NUM_POINTS_TRIANGLE);
+      }
+      else
+      {
+          g.drawPolygon(xPoints, yPoints, NUM_POINTS_TRIANGLE);
+      }
     }
     
     /**
@@ -133,7 +133,7 @@ public class Astronaut extends Opponents implements IDrawable, ISelectable
      */
     public void setSelectable(boolean b)
     {
-    	isSelect = b;
+      isSelect = b;
     }
     
     /**
@@ -143,7 +143,7 @@ public class Astronaut extends Opponents implements IDrawable, ISelectable
      */
     public boolean isSelected()
     {
-    	return isSelect;
+      return isSelect;
     }
     
     /**
@@ -156,20 +156,20 @@ public class Astronaut extends Opponents implements IDrawable, ISelectable
      **/
     public boolean contains(Point pPtrRelPrnt, Point pCmpRelPrnt)
     {
-    	int pX = pPtrRelPrnt.getX();
-    	int pY = pPtrRelPrnt.getY();
-    	int xLoc = pCmpRelPrnt.getX() + (int) this.getLocationX();
-    	int yLoc = pCmpRelPrnt.getY() + (int) this.getLocationY();
-    	
-    	if ((pX >= xLoc) && (pX <= xLoc + this.getSize()) &&
-    		(pY >= yLoc) && (pY <= yLoc + this.getSize()))
-    	{
-    		return true;
-    	}
-    	else
-    	{
-    		return false;
-    	}
+      int pX = pPtrRelPrnt.getX();
+      int pY = pPtrRelPrnt.getY();
+      int xLoc = pCmpRelPrnt.getX() + (int) this.getLocationX();
+      int yLoc = pCmpRelPrnt.getY() + (int) this.getLocationY();
+      
+      if ((pX >= xLoc) && (pX <= xLoc + this.getSize()) &&
+        (pY >= yLoc) && (pY <= yLoc + this.getSize()))
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
     }
     
     /**
@@ -177,9 +177,9 @@ public class Astronaut extends Opponents implements IDrawable, ISelectable
      */
     public void heal()
     {
-    	this.health = STARTING_HEALTH;
-    	this.setColor(ColorUtil.rgb(UPPER_BOUND_COLOR, 0, 0));
-    	this.setSpeed(STARTING_HEALTH * ASTRO_SPEED_CONST);
+      this.health = STARTING_HEALTH;
+      this.setColor(ColorUtil.rgb(UPPER_BOUND_COLOR, 0, 0));
+      this.setSpeed(STARTING_HEALTH * ASTRO_SPEED_CONST);
     }
     
  // Overriding setSize method so Opponents can't change size after instantiation.

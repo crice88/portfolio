@@ -5,30 +5,30 @@ use UCDavis\Connections\SQLConnection;
 
 class MapDAO
 {
-	private $connection;
+  private $connection;
 
-	public $isConnected;
+  public $isConnected;
 
-	public function __construct($dbName)
-	{
-		$this->connection = new SQLConnection($dbName);
+  public function __construct($dbName)
+  {
+    $this->connection = new SQLConnection($dbName);
 
-		if ($this->connection->isConnected) {
-			$this->isConnected = true;
-		} else {
-			$this->isConnected = false;
-		}
-	}
+    if ($this->connection->isConnected) {
+      $this->isConnected = true;
+    } else {
+      $this->isConnected = false;
+    }
+  }
 
-	public function getMap($mapId)
-	{
-			$query = 'SELECT Address, Latitude, Longitude '
-				. 'FROM maptwo '
-				. 'WHERE MapID= ' . $mapId;
+  public function getMap($mapId)
+  {
+      $query = 'SELECT Address, Latitude, Longitude '
+        . 'FROM maptwo '
+        . 'WHERE MapID= ' . $mapId;
 
-			$result = $this->connection->runQuery($query);
+      $result = $this->connection->runQuery($query);
 
-			return $result;
-	}
+      return $result;
+  }
 }
 ?>

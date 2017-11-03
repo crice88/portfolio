@@ -6,31 +6,31 @@ import com.codename1.ui.events.ActionEvent;
 /** Command class that fires off moveUp method. */
 public class MoveUpCommand extends Command
 {
-	private GameWorld target;
-	
-	public MoveUpCommand()
-	{
-		super("Up");
-	}
-	
-	/**
-	 * Sets the target object that this command will work on.
-	 * 
-	 * @param gw the referenced GameWorld object
-	 */
-	public void setTarget(GameWorld gw)
-	{
-		target = gw;
-	}
-	
-	/**
-	 * Overrides extended actionPerformed method
-	 * 
-	 * @param ev the event to perform
-	 */
-	@Override
-	public void actionPerformed(ActionEvent ev)
-	{
-		target.moveUp();
-	}
+  private GameWorld target;
+  
+  public MoveUpCommand()
+  {
+    super("Up");
+  }
+  
+  /**
+   * Sets the target object that this command will work on.
+   * 
+   * @param gw the referenced GameWorld object
+   */
+  public void setTarget(GameWorld gw)
+  {
+    target = gw;
+  }
+  
+  /**
+   * Overrides extended actionPerformed method
+   * 
+   * @param ev the event to perform
+   */
+  @Override
+  public void actionPerformed(ActionEvent ev)
+  {
+    target.moveUp();
+  }
 }

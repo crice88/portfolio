@@ -119,7 +119,7 @@ public class Game extends Form implements Runnable
         this.setTitle("Space Fights Game");
         
         this.add(BorderLayout.NORTH, sv);
-		
+    
         // Sets empty center container
         mv.getAllStyles().setBorder(Border.createLineBorder(1, ColorUtil.BLACK));
         this.add(BorderLayout.CENTER, mv);
@@ -232,28 +232,28 @@ public class Game extends Form implements Runnable
     // Starts a thread that ticks the game clock
     public void run()
     {
-    	gw.tickClock(WAIT_TIME);
+      gw.tickClock(WAIT_TIME);
     }
     
     // Cancels the game timer and sets command inactive
     public void pauseGameTimer()
     {
-    	buttonTwoS.setText("Play");
-    	isTimed = false;
-    	timer.cancel();
-    	this.setCommandsActive(false);
-    	gw.setPauseSound(true);
+      buttonTwoS.setText("Play");
+      isTimed = false;
+      timer.cancel();
+      this.setCommandsActive(false);
+      gw.setPauseSound(true);
     }
     
     // Starts the game timer and sets commands to active
     public void startGameTimer()
     {
-    	buttonTwoS.setText("Pause");
-    	isTimed = true;
-    	timer.schedule(WAIT_TIME, true, this);
-    	this.setCommandsActive(true);
-    	mv.unSelectObjects();
-    	gw.setPauseSound(false);
+      buttonTwoS.setText("Pause");
+      isTimed = true;
+      timer.schedule(WAIT_TIME, true, this);
+      this.setCommandsActive(true);
+      mv.unSelectObjects();
+      gw.setPauseSound(false);
     }
     
     /**
@@ -263,7 +263,7 @@ public class Game extends Form implements Runnable
      */
     public boolean getIsTimed()
     {
-    	return isTimed;
+      return isTimed;
     }
     
     /**
@@ -273,9 +273,9 @@ public class Game extends Form implements Runnable
      */
     public void setCommandsActive(boolean b)
     {
-    	if (b)
-    	{
-    		this.addKeyListener('e', expand);
+      if (b)
+      {
+        this.addKeyListener('e', expand);
             this.addKeyListener('c', contractDoor);
             this.addKeyListener('s', open);
             this.addKeyListener('r', moveR);
@@ -296,10 +296,10 @@ public class Game extends Form implements Runnable
             buttonFourE.setEnabled(true);
             buttonFiveE.setEnabled(true);
             open.setEnabled(true);
-    	}
-    	else
-    	{
-    		this.removeKeyListener('e', expand);
+      }
+      else
+      {
+        this.removeKeyListener('e', expand);
             this.removeKeyListener('c', contractDoor);
             this.removeKeyListener('s', open);
             this.removeKeyListener('r', moveR);
@@ -319,6 +319,6 @@ public class Game extends Form implements Runnable
             buttonFourE.setEnabled(false);
             buttonFiveE.setEnabled(false);
             open.setEnabled(false);
-    	}
+      }
     }
 }

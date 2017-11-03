@@ -73,10 +73,10 @@ public class Alien extends Opponents implements IDrawable
     public void draw(Graphics g, Point pCmpRelPrnt)
     {
         g.setColor(this.getColor());
-    	g.drawRect(pCmpRelPrnt.getX() + (int) this.getLocationX(), pCmpRelPrnt.getY() + (int) this.getLocationY(), 
-    			  super.getSize(), super.getSize(), 0);
-    	g.drawArc(pCmpRelPrnt.getX() + (int) this.getLocationX(), pCmpRelPrnt.getY() + (int) this.getLocationY(), 
-    			  super.getSize(), super.getSize(), 0, 360);
+      g.drawRect(pCmpRelPrnt.getX() + (int) this.getLocationX(), pCmpRelPrnt.getY() + (int) this.getLocationY(), 
+            super.getSize(), super.getSize(), 0);
+      g.drawArc(pCmpRelPrnt.getX() + (int) this.getLocationX(), pCmpRelPrnt.getY() + (int) this.getLocationY(), 
+            super.getSize(), super.getSize(), 0, 360);
     }
     
     /**
@@ -106,7 +106,7 @@ public class Alien extends Opponents implements IDrawable
      */
     public Sound getAlienAlienCollisionSound()
     {
-    	return newAlienSound;
+      return newAlienSound;
     }    
     
     /**
@@ -114,7 +114,7 @@ public class Alien extends Opponents implements IDrawable
      */
     public void incrementTimeAlive()
     {
-    	timeAlive++;
+      timeAlive++;
     }
     
     /**
@@ -124,7 +124,7 @@ public class Alien extends Opponents implements IDrawable
      */
     public int getTimeAlive()
     {
-    	return this.timeAlive;
+      return this.timeAlive;
     }
     // Overrides setters so speed, and color cannot be changed after object is instantiated.   
     @Override

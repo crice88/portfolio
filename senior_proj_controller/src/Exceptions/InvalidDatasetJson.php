@@ -5,11 +5,11 @@ use UCDavis\Exceptions\UCDavisException;
 
 class InvalidDatasetJson extends UCDavisException
 {
-	public function __construct()
-	{
-		$message = "Received JSON is invalid.";
+  public function __construct()
+  {
+    $message = "Received JSON is invalid.";
 
-		parent::__construct($message);
-	}
+    parent::__construct($message);
+  }
 }
 ?>

@@ -10,28 +10,28 @@ import com.codename1.ui.geom.Point;
  */
 public class Spaceship extends Rescuers implements IDrawable
 { 
-	// Single global reference to the spaceship.
-	private static Spaceship ship;
-	private Sound doorOpenSound;
-	
-	// Makes sure that no one has access to the constructor directly.
-	private Spaceship(float x, float y, Sound s) 
-	{
-		this.setSize(100);
+  // Single global reference to the spaceship.
+  private static Spaceship ship;
+  private Sound doorOpenSound;
+  
+  // Makes sure that no one has access to the constructor directly.
+  private Spaceship(float x, float y, Sound s) 
+  {
+    this.setSize(100);
         this.setLocationX(x);
         this.setLocationY(y);
         super.setColor(ColorUtil.argb(UPPER_BOUND_COLOR, 0, 0, 0));
         this.doorOpenSound = s;
-	}
-	
+  }
+  
     /** Private constructor that adheres to the Singleton pattern. */
     public static Spaceship getShip(float x, float y, Sound s)
     {
-    	if (ship == null)
-    	{
-    		ship = new Spaceship(randNum((int) x, 0), randNum((int) y, 0), s);
-    	}
-    	return ship;
+      if (ship == null)
+      {
+        ship = new Spaceship(randNum((int) x, 0), randNum((int) y, 0), s);
+      }
+      return ship;
     }
     
     /** 
@@ -86,9 +86,9 @@ public class Spaceship extends Rescuers implements IDrawable
      */
     public void draw(Graphics g, Point pCmpRelPrnt)
     {
-    	g.setColor(this.getColor());
-    	g.drawRect((int) (pCmpRelPrnt.getX() + this.getLocationX()), (int) (pCmpRelPrnt.getY() + this.getLocationY()), 
-    			   super.getSize(), super.getSize(), 10);
+      g.setColor(this.getColor());
+      g.drawRect((int) (pCmpRelPrnt.getX() + this.getLocationX()), (int) (pCmpRelPrnt.getY() + this.getLocationY()), 
+             super.getSize(), super.getSize(), 10);
     }
     
     /**
@@ -98,6 +98,6 @@ public class Spaceship extends Rescuers implements IDrawable
      */
     public Sound getOpenDoorSound()
     {
-    	return doorOpenSound;
+      return doorOpenSound;
     }
 }

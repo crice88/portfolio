@@ -72,7 +72,7 @@ public class GameWorld extends Observable implements IGuided
         
         for (i = 0; i < numAlien; i++)
         {
-        	// Objects are created at an offset to make sure that they are created fully inbounds.
+          // Objects are created at an offset to make sure that they are created fully inbounds.
             gamePieces.add(new Alien(GameObject.randNum(upperBoundX - GOBJ_CREATION_OFFSET, 0), 
                            GameObject.randNum(upperBoundY - GOBJ_CREATION_OFFSET, 0), alienAlienCollisionSound,
                            alienAstronautCollisionSound, false));
@@ -97,104 +97,104 @@ public class GameWorld extends Observable implements IGuided
      */
     public void jumpToLoc(float x, float y)
     {
-    	Spaceship s;
-    	IIterator iGameObj = gamePieces.getIterator();
-    	
-    	while (iGameObj.hasNext())
-    	{
-    		GameObject gObj = (GameObject) iGameObj.getNext();
-    		if(gObj instanceof Spaceship)
-    		{
-    			s = (Spaceship) gObj;
-    	    	
-    			s.setLocationX(x);
-    	        s.setLocationY(y);
-    	        
-    	        setChanged();
-    	        notifyObservers(this);
-    		}
-    	}
+      Spaceship s;
+      IIterator iGameObj = gamePieces.getIterator();
+      
+      while (iGameObj.hasNext())
+      {
+        GameObject gObj = (GameObject) iGameObj.getNext();
+        if(gObj instanceof Spaceship)
+        {
+          s = (Spaceship) gObj;
+            
+          s.setLocationX(x);
+              s.setLocationY(y);
+              
+              setChanged();
+              notifyObservers(this);
+        }
+      }
     }
     
     /** Methods that call spaceships methods of the same name. */
     public void moveLeft()
     {
-    	Spaceship s;
-    	IIterator iGameObj = gamePieces.getIterator();
-    	
-    	while (iGameObj.hasNext())
-    	{
-    		GameObject gObj = (GameObject) iGameObj.getNext();
-    		if(gObj instanceof Spaceship)
-    		{
-    			s = (Spaceship) gObj;
-    	    	
-    			s.moveLeft();
-    			
-    			setChanged();
+      Spaceship s;
+      IIterator iGameObj = gamePieces.getIterator();
+      
+      while (iGameObj.hasNext())
+      {
+        GameObject gObj = (GameObject) iGameObj.getNext();
+        if(gObj instanceof Spaceship)
+        {
+          s = (Spaceship) gObj;
+            
+          s.moveLeft();
+          
+          setChanged();
                 notifyObservers(this);
-    		}
-    	}
+        }
+      }
     }
     
     public void moveRight()
     {
-    	Spaceship s;
-    	IIterator iGameObj = gamePieces.getIterator();
-    	
-    	while (iGameObj.hasNext())
-    	{
-    		GameObject gObj = (GameObject) iGameObj.getNext();
-    		if(gObj instanceof Spaceship)
-    		{
-    			s = (Spaceship) gObj;
-    	    	
-    			s.moveRight();
-    			
-    			setChanged();
+      Spaceship s;
+      IIterator iGameObj = gamePieces.getIterator();
+      
+      while (iGameObj.hasNext())
+      {
+        GameObject gObj = (GameObject) iGameObj.getNext();
+        if(gObj instanceof Spaceship)
+        {
+          s = (Spaceship) gObj;
+            
+          s.moveRight();
+          
+          setChanged();
                 notifyObservers(this);
-    		}
-    	}
+        }
+      }
     }
     
     public void moveUp()
     {
-    	Spaceship s;
-    	IIterator iGameObj = gamePieces.getIterator();
-    	
-    	while (iGameObj.hasNext())
-    	{
-    		GameObject gObj = (GameObject) iGameObj.getNext();
-    		if(gObj instanceof Spaceship)
-    		{
-    			s = (Spaceship) gObj;
-    	    	
-    			s.moveUp();
-    			
-    			setChanged();
+      Spaceship s;
+      IIterator iGameObj = gamePieces.getIterator();
+      
+      while (iGameObj.hasNext())
+      {
+        GameObject gObj = (GameObject) iGameObj.getNext();
+        if(gObj instanceof Spaceship)
+        {
+          s = (Spaceship) gObj;
+            
+          s.moveUp();
+          
+          setChanged();
                 notifyObservers(this);
-    		}
-    	}
+        }
+      }
     }
     
     public void moveDown()
     {
-    	Spaceship s;
-    	IIterator iGameObj = gamePieces.getIterator();
-    	
-    	while (iGameObj.hasNext())
-    	{
-    		GameObject gObj = (GameObject) iGameObj.getNext();
-    		if(gObj instanceof Spaceship)
-    		{
-    			s = (Spaceship) gObj;
-    	    	
-    			s.moveDown();
-    			
-    			setChanged();
+      Spaceship s;
+      IIterator iGameObj = gamePieces.getIterator();
+      
+      while (iGameObj.hasNext())
+      {
+        GameObject gObj = (GameObject) iGameObj.getNext();
+        if(gObj instanceof Spaceship)
+        {
+          s = (Spaceship) gObj;
+            
+          s.moveDown();
+          
+          setChanged();
                 notifyObservers(this);
-    		}
-    	}
+        }
+      }
     }
     
     /** Moves the spaceship to a random Aliens location. */ 
@@ -205,7 +205,7 @@ public class GameWorld extends Observable implements IGuided
         
         if (alienRemaining == 0)
         {
-        	System.out.println("No Aliens are left!");
+          System.out.println("No Aliens are left!");
             return;
         }
         
@@ -218,8 +218,8 @@ public class GameWorld extends Observable implements IGuided
         
         while(iGameObj.hasNext())
         {
-        	GameObject gObj = (GameObject) iGameObj.getNext();
-        	
+          GameObject gObj = (GameObject) iGameObj.getNext();
+          
             if (gObj instanceof Alien)
             {
                 // Every alien found, place it's x and y location into 
@@ -257,8 +257,8 @@ public class GameWorld extends Observable implements IGuided
         
         while(iGameObj.hasNext())
         {
-        	GameObject gObj = (GameObject) iGameObj.getNext();
-        	
+          GameObject gObj = (GameObject) iGameObj.getNext();
+          
             if (gObj instanceof Astronaut)
             {
                  
@@ -286,17 +286,17 @@ public class GameWorld extends Observable implements IGuided
         
         while(iGameObj.hasNext())
         {
-        	GameObject gObj = (GameObject) iGameObj.getNext();
-        	
-        	if(gObj instanceof Spaceship)
-        	{
-        		s = (Spaceship) gObj;
-        		
-        		s.setSize(s.getSize() + DOOR_SIZE_CONSTANT);
+          GameObject gObj = (GameObject) iGameObj.getNext();
+          
+          if(gObj instanceof Spaceship)
+          {
+            s = (Spaceship) gObj;
+            
+            s.setSize(s.getSize() + DOOR_SIZE_CONSTANT);
                 
                 setChanged();
                 notifyObservers(this);
-        	}
+          }
         }
     }
     
@@ -308,17 +308,17 @@ public class GameWorld extends Observable implements IGuided
         
         while(iGameObj.hasNext())
         {
-        	GameObject gObj = (GameObject) iGameObj.getNext();
-        	
-        	if(gObj instanceof Spaceship)
-        	{
-        		s = (Spaceship) gObj;
-        		
-        		s.setSize(s.getSize() - DOOR_SIZE_CONSTANT);
+          GameObject gObj = (GameObject) iGameObj.getNext();
+          
+          if(gObj instanceof Spaceship)
+          {
+            s = (Spaceship) gObj;
+            
+            s.setSize(s.getSize() - DOOR_SIZE_CONSTANT);
                 
                 setChanged();
                 notifyObservers(this);
-        	}
+          }
         }
     }
     
@@ -329,8 +329,8 @@ public class GameWorld extends Observable implements IGuided
         
         while(iGameObj.hasNext())
         {
-        	GameObject gObj = (GameObject) iGameObj.getNext();
-        	
+          GameObject gObj = (GameObject) iGameObj.getNext();
+          
             // Every object that implements IMoving interface, call their move() method. 
             if (gObj instanceof IMoving)
             {
@@ -365,17 +365,17 @@ public class GameWorld extends Observable implements IGuided
                         
                         if (otherObj != curObj)
                         {
-                        	// If an object isn't collidiing see if it is in the collision list. If it is, remove it.
+                          // If an object isn't collidiing see if it is in the collision list. If it is, remove it.
                             if (curObj.collidesWith(otherObj))
                             {
                                 curObj.handleCollision(otherObj, this);
                             }
                             else if(((Opponents) curObj).getCollisionList().contains(otherObj) &&
-                            		((Opponents) otherObj).getCollisionList().contains(curObj))
-							{
-								((Opponents) curObj).getCollisionList().remove(otherObj);
-								((Opponents) otherObj).getCollisionList().remove(curObj);
-							}
+                                ((Opponents) otherObj).getCollisionList().contains(curObj))
+              {
+                ((Opponents) curObj).getCollisionList().remove(otherObj);
+                ((Opponents) otherObj).getCollisionList().remove(curObj);
+              }
                         }
                     }  
                 }
@@ -393,23 +393,23 @@ public class GameWorld extends Observable implements IGuided
      */
     public void incrementTimeAlive()
     {
-    	IIterator iGameObj = gamePieces.getIterator();
-    	
-    	while(iGameObj.hasNext())
+      IIterator iGameObj = gamePieces.getIterator();
+      
+      while(iGameObj.hasNext())
         {
-        	GameObject gObj = (GameObject) iGameObj.getNext();
+          GameObject gObj = (GameObject) iGameObj.getNext();
 
             if (gObj instanceof Alien)
             {
-            	Alien a = (Alien) gObj;
-            	
+              Alien a = (Alien) gObj;
+              
                 if (a.getNewlyCreated() && a.getTimeAlive() > LENGTH_OF_TIME_ALIVE)
                 {
-                	a.setNewlyCreated(false);
+                  a.setNewlyCreated(false);
                 }
                 else if (a.getNewlyCreated())
                 {
-                	a.incrementTimeAlive();
+                  a.incrementTimeAlive();
                 }
             }
         }
@@ -423,18 +423,18 @@ public class GameWorld extends Observable implements IGuided
      */
     public void checkBoundary(GameObject gObj)
     {
-    	Opponents o = (Opponents) gObj;
-    	
-    	if (o.getLocationX() + o.getSize() >= upperBoundX ||
-    		o.getLocationX() < 0)
-    	{
-    		o.reverseDirection();
-    	}
-    	else if (o.getLocationY() + o.getSize() >= upperBoundY ||
-    			 o.getLocationY() < 0)
-    	{
-    		o.reverseDirection();
-    	}
+      Opponents o = (Opponents) gObj;
+      
+      if (o.getLocationX() + o.getSize() >= upperBoundX ||
+        o.getLocationX() < 0)
+      {
+        o.reverseDirection();
+      }
+      else if (o.getLocationY() + o.getSize() >= upperBoundY ||
+           o.getLocationY() < 0)
+      {
+        o.reverseDirection();
+      }
     }
     
     /** 
@@ -453,11 +453,11 @@ public class GameWorld extends Observable implements IGuided
         
         while(iGameObj.hasNext())
         {
-        	GameObject gObj = (GameObject) iGameObj.getNext();
-        	
-        	if(gObj instanceof Spaceship)
-        	{
-        		s = (Spaceship) gObj;
+          GameObject gObj = (GameObject) iGameObj.getNext();
+          
+          if(gObj instanceof Spaceship)
+          {
+            s = (Spaceship) gObj;
 
                 // Finds the distance from the ships center, then assigns 
                 // x and y boundaries based on those coordinates. 
@@ -470,7 +470,7 @@ public class GameWorld extends Observable implements IGuided
                 {
                     s.getOpenDoorSound().play();
                 }
-        	}
+          }
         }        
         
         // Get another iterator to scan through the full collection
@@ -478,8 +478,8 @@ public class GameWorld extends Observable implements IGuided
         
         while(iGameObj.hasNext())
         {
-        	GameObject gObj = (GameObject) iGameObj.getNext();
-        	
+          GameObject gObj = (GameObject) iGameObj.getNext();
+          
             if (gObj instanceof Alien)
             {
                 Alien a = (Alien) gObj;
@@ -542,26 +542,26 @@ public class GameWorld extends Observable implements IGuided
      */
     public void updateOpponentsRemaining()
     {
-    	IIterator iGameObj = gamePieces.getIterator();
-    	int x = 0;
-    	int y = 0;
-    	
-    	while(iGameObj.hasNext())
-    	{
-    		GameObject gObj = (GameObject) iGameObj.getNext();
-    		
-    		if (gObj instanceof Alien)
-    		{
-    			x++;
-    		}
-    		else if (gObj instanceof Astronaut)
-    		{
-    			y++;
-    		}
-    	}
-    	
-    	this.alienRemaining = x;
-    	this.astroRemaining = y;
+      IIterator iGameObj = gamePieces.getIterator();
+      int x = 0;
+      int y = 0;
+      
+      while(iGameObj.hasNext())
+      {
+        GameObject gObj = (GameObject) iGameObj.getNext();
+        
+        if (gObj instanceof Alien)
+        {
+          x++;
+        }
+        else if (gObj instanceof Astronaut)
+        {
+          y++;
+        }
+      }
+      
+      this.alienRemaining = x;
+      this.astroRemaining = y;
     }
     
     /** 
@@ -574,48 +574,48 @@ public class GameWorld extends Observable implements IGuided
 
         while(iGameObj.hasNext())
         {
-        	GameObject gObj = (GameObject) iGameObj.getNext();
-        	System.out.println(gObj.toString());
+          GameObject gObj = (GameObject) iGameObj.getNext();
+          System.out.println(gObj.toString());
         }
     }
     
     /** Prompts to exit the game. */
     public void exitGame()
     {
-    	if (Dialog.show("Exit", "Would you like to Exit??", "Ok", "Cancel"))
-    	{
-    		 Display.getInstance().exitApplication();  
-    	}
+      if (Dialog.show("Exit", "Would you like to Exit??", "Ok", "Cancel"))
+      {
+         Display.getInstance().exitApplication();  
+      }
     }
     
     /** Creates a dialog box that has some about information */
     public void about()
     {
-    	Dialog.show("About", "Colin Rice\n\nCSC 133\n\nVersion: 0.3", "Ok", null);
+      Dialog.show("About", "Colin Rice\n\nCSC 133\n\nVersion: 0.3", "Ok", null);
     }
     
     /** Displays a help box dialog */
     public void help()
     {
-    	String helpText = "Keys that can be used for playing Space Fights\n\n" +
-    					  "e - Expand ship size\nc - Contract ship size\n" +
-    					  "s - Open ship door\nr - Move ship right\nl - Move ship left\n" +
-    					  "u - Move ship up\nd - Move ship down\no- Jump to random astronaut\n" +
-    					  "a - Jump to random alien\nw - Create an alien\nf - Fight an alien\n" +
-    					  "t - Tick the game clock\nx - Exit game";
-    	Dialog.show("Help", helpText, "Ok", null);
+      String helpText = "Keys that can be used for playing Space Fights\n\n" +
+                "e - Expand ship size\nc - Contract ship size\n" +
+                "s - Open ship door\nr - Move ship right\nl - Move ship left\n" +
+                "u - Move ship up\nd - Move ship down\no- Jump to random astronaut\n" +
+                "a - Jump to random alien\nw - Create an alien\nf - Fight an alien\n" +
+                "t - Tick the game clock\nx - Exit game";
+      Dialog.show("Help", helpText, "Ok", null);
     }
     
     /** Exits game when there are no astronauts remaining. Displays final score. */
     private void noAstroRemain()
     {
-    	String finalScore = "Game over, no astronauts remain...\n" +
-    						"Final Score is...\n" +
-    						"Aliens snuck in: " + this.alienSneakedIn +
-    						"\nAstronauts rescued: " + this.astroRescued +
-    						"\nTotal points: " + this.score;
-    	Dialog.show("Game Over", finalScore, "Ok", null);
-    	Display.getInstance().exitApplication();       
+      String finalScore = "Game over, no astronauts remain...\n" +
+                "Final Score is...\n" +
+                "Aliens snuck in: " + this.alienSneakedIn +
+                "\nAstronauts rescued: " + this.astroRescued +
+                "\nTotal points: " + this.score;
+      Dialog.show("Game Over", finalScore, "Ok", null);
+      Display.getInstance().exitApplication();       
     }
     
     /**
@@ -625,7 +625,7 @@ public class GameWorld extends Observable implements IGuided
      */
     public int getAstroRemain()
     {
-    	return astroRemaining;
+      return astroRemaining;
     }
     
     /**
@@ -635,7 +635,7 @@ public class GameWorld extends Observable implements IGuided
      */
     public int getAlienRemain()
     {
-    	return alienRemaining;
+      return alienRemaining;
     }
     
     /**
@@ -645,7 +645,7 @@ public class GameWorld extends Observable implements IGuided
      */
     public int getAstroRescue()
     {
-    	return astroRescued;
+      return astroRescued;
     }
     
     /**
@@ -655,7 +655,7 @@ public class GameWorld extends Observable implements IGuided
      */
     public int getAlienSnuckIn()
     {
-    	return alienSneakedIn;
+      return alienSneakedIn;
     }
     
     /**
@@ -665,7 +665,7 @@ public class GameWorld extends Observable implements IGuided
      */
     public int getScore()
     {
-    	return score;
+      return score;
     }
     
     /**
@@ -675,7 +675,7 @@ public class GameWorld extends Observable implements IGuided
      */
     public boolean getSound()
     {
-    	return isSound;
+      return isSound;
     }
     
     /**
@@ -685,20 +685,20 @@ public class GameWorld extends Observable implements IGuided
      */
     public void setSound(boolean b)
     {
-    	isSound = b;
-    	
-    	if(isSound && (isPaused == false))
-    	{
-    		bgSound.play();
-    	}
-    	else
-    	{
-    		bgSound.pause();
-    	}
-    	
+      isSound = b;
+      
+      if(isSound && (isPaused == false))
+      {
+        bgSound.play();
+      }
+      else
+      {
+        bgSound.pause();
+      }
+      
         SideMenuBar.closeCurrentMenu();
-    	
-    	setChanged();
+      
+      setChanged();
         notifyObservers(this);
     }
     
@@ -711,23 +711,23 @@ public class GameWorld extends Observable implements IGuided
      */
     public void setPauseSound(boolean b)
     { 	
-    	if(b)
-    	{
-    		isPaused = true;
-    		bgSound.pause();
-    	}
-    	else
-    	{
-    		if (isSound == false)
-    		{
-    			isPaused = false;
-    			return;
-    		}
-    		isPaused = false;
-    		bgSound.play();
-    	}
-    	
-    	setChanged();
+      if(b)
+      {
+        isPaused = true;
+        bgSound.pause();
+      }
+      else
+      {
+        if (isSound == false)
+        {
+          isPaused = false;
+          return;
+        }
+        isPaused = false;
+        bgSound.play();
+      }
+      
+      setChanged();
         notifyObservers(this);
     }
     
@@ -738,7 +738,7 @@ public class GameWorld extends Observable implements IGuided
      */
     public void healAstronaut(Astronaut a)
     {   	
-    	a.heal();
+      a.heal();
     }
     
     /**
@@ -748,7 +748,7 @@ public class GameWorld extends Observable implements IGuided
      */
     public boolean getIsPaused()
     {
-    	return isPaused;
+      return isPaused;
     }
     
     /**
@@ -758,7 +758,7 @@ public class GameWorld extends Observable implements IGuided
      */
     public void setHeight(int y)
     {
-    	upperBoundY = y;
+      upperBoundY = y;
     }
     
     /**
@@ -768,7 +768,7 @@ public class GameWorld extends Observable implements IGuided
      */
     public void setWidth(int x)
     {
-    	upperBoundX = x;
+      upperBoundX = x;
     }
     
     /**
@@ -778,7 +778,7 @@ public class GameWorld extends Observable implements IGuided
      */
     public int getWidth()
     {
-    	return upperBoundX;
+      return upperBoundX;
     }
     
     /**
@@ -788,7 +788,7 @@ public class GameWorld extends Observable implements IGuided
      */
     public int getHeight()
     {
-    	return upperBoundY;
+      return upperBoundY;
     }
     
     /**
@@ -798,7 +798,7 @@ public class GameWorld extends Observable implements IGuided
      */
     public GameObjectCollection getGameObjectCollection()
     {
-    	return this.gamePieces;
+      return this.gamePieces;
     }
     
     /**

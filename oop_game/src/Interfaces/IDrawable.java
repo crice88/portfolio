@@ -6,5 +6,5 @@ import com.codename1.ui.geom.Point;
 /** Interface for each drawable object */
 public interface IDrawable
 {
-	public void draw(Graphics g, Point pCmpRelPrnt);
+  public void draw(Graphics g, Point pCmpRelPrnt);
 }

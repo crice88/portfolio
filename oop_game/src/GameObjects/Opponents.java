@@ -11,12 +11,12 @@ import com.codename1.charts.util.ColorUtil;
  */
 public abstract class Opponents extends GameObject implements IMoving, ICollider
 {
-	// Final named constants
-	private final int MAX_NUM_ALIENS = 30;
-	private final int MIN_NUM_ALIENS = 2;
-	private final int RAND_DIR_UPPER_BOUND = 180;
-	private final int RAND_DIR_LOWER_BOUND = 40;
-	
+  // Final named constants
+  private final int MAX_NUM_ALIENS = 30;
+  private final int MIN_NUM_ALIENS = 2;
+  private final int RAND_DIR_UPPER_BOUND = 180;
+  private final int RAND_DIR_LOWER_BOUND = 40;
+  
     // Private fields
     private int direction;
     private int speed;
@@ -30,7 +30,7 @@ public abstract class Opponents extends GameObject implements IMoving, ICollider
      */
     public void setDirection(int n)
     {
-    	this.direction = n;
+      this.direction = n;
     }
     
     /**
@@ -69,7 +69,7 @@ public abstract class Opponents extends GameObject implements IMoving, ICollider
      */
     public void reverseDirection()
     {
-    	int r = super.randNum(RAND_DIR_UPPER_BOUND, RAND_DIR_LOWER_BOUND);
+      int r = super.randNum(RAND_DIR_UPPER_BOUND, RAND_DIR_LOWER_BOUND);
         this.direction = (this.direction + r) % 360;
     }
     
@@ -135,7 +135,7 @@ public abstract class Opponents extends GameObject implements IMoving, ICollider
         }
         else
         {
-        	result = true;
+          result = true;
         }
         
         return result;
@@ -154,7 +154,7 @@ public abstract class Opponents extends GameObject implements IMoving, ICollider
         // If the collision has already been handled, return
         if (this.collisionList.contains(o) || o.collisionList.contains(this))
         {
-        	return;
+          return;
         }
         
         if (o instanceof Alien && this instanceof Alien)
@@ -171,11 +171,11 @@ public abstract class Opponents extends GameObject implements IMoving, ICollider
                // Check to see if the object is newly created.
                if (((Alien) o).getNewlyCreated())
                {
-            	   return;
+                 return;
                }
                else if (((Alien) this).getNewlyCreated())
                {
-            	   return;
+                 return;
                }
 
                // Creates alien at one parents' x and the other parents' y to randomize creation location.
@@ -218,7 +218,7 @@ public abstract class Opponents extends GameObject implements IMoving, ICollider
      */
     public Sound getAlienAstronautCollisionSound()
     {
-    	return alienAstronautCollisionSound;
+      return alienAstronautCollisionSound;
     }
     
     /**
@@ -228,7 +228,7 @@ public abstract class Opponents extends GameObject implements IMoving, ICollider
      */
     public void setAlienAstronautCollisionSound(Sound s)
     {
-    	alienAstronautCollisionSound = s;
+      alienAstronautCollisionSound = s;
     }
     
     /**
@@ -238,6 +238,6 @@ public abstract class Opponents extends GameObject implements IMoving, ICollider
      */
     public ArrayList<Opponents> getCollisionList()
     {
-    	return this.collisionList;
+      return this.collisionList;
     }
 }

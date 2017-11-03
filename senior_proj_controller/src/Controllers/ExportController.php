@@ -9,17 +9,17 @@ use UCDavis\Controllers\Services\SpreadsheetServices;
 class ExportController 
 {
 
-	/**
-	 * Saves document to ouput stream
-	 *
-	 * @param string datasetId
-	 * @param string fileType
-	 */
-	public function downloadDataset($datasetId, $fileType)
-	{
-		$service = new SpreadsheetServices($datasetId, $fileType);
+  /**
+   * Saves document to ouput stream
+   *
+   * @param string datasetId
+   * @param string fileType
+   */
+  public function downloadDataset($datasetId, $fileType)
+  {
+    $service = new SpreadsheetServices($datasetId, $fileType);
 
-		$service->saveDocument();
-	}
+    $service->saveDocument();
+  }
 }
 ?>

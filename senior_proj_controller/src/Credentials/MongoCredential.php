@@ -6,21 +6,21 @@ namespace UCDavis\Credentials;
  */
 class MongoCredential implements ICredential
 {
-	const HOST = 'mongodb://localhost:27017';
+  const HOST = 'mongodb://localhost:27017';
 
-	public function getUserName()
-	{
-		// TODO: Setup user account
-	}
+  public function getUserName()
+  {
+    // TODO: Setup user account
+  }
 
-	public function getPassword()
-	{
-		// TODO: Setup user account
-	}
+  public function getPassword()
+  {
+    // TODO: Setup user account
+  }
 
-	public function getHost()
-	{
-		return self::HOST;
-	}
+  public function getHost()
+  {
+    return self::HOST;
+  }
 }
 ?>

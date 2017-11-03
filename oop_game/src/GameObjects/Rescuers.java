@@ -55,8 +55,8 @@ public abstract class Rescuers extends GameObject implements IGuided
     @Override
     public String toString()
     {
-    	String s;
-    	
+      String s;
+      
 
         s = "loc=" + Math.round(this.getLocationX() * 10.0f)/10.0f 
             + ","  + Math.round(this.getLocationY() * 10.0f)/10.0f 

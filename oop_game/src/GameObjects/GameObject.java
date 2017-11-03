@@ -89,7 +89,7 @@ public abstract class GameObject
      */
     public void setLocationX(float f)
     {
-    	this.locationX = f;
+      this.locationX = f;
     }
     
     /**

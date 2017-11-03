@@ -6,31 +6,31 @@ use UCDavis\DataAccess\DatasetDAO;
 
 class MongoDAO
 {
-	const DATABASE_NAME = 'charts';
+  const DATABASE_NAME = 'charts';
 
-	private $mongo;
-	private $datasetName;
+  private $mongo;
+  private $datasetName;
 
-	public function __construct($datasetId)
-	{
-		$dao = new DatasetDAO(self::DATABASE_NAME);
+  public function __construct($datasetId)
+  {
+    $dao = new DatasetDAO(self::DATABASE_NAME);
 
-		$this->mongo = new MongoConnection;
-		$this->datasetName = $dao->getDatasetName($datasetId);
-	}
+    $this->mongo = new MongoConnection;
+    $this->datasetName = $dao->getDatasetName($datasetId);
+  }
 
-	public function getOptions()
-	{
-		if ($this->mongo->isConnected) {
-			$collection = $this->mongo->getCollection(self::DATABASE_NAME,
-				strtolower($this->datasetName) . 'Options');
+  public function getOptions()
+  {
+    if ($this->mongo->isConnected) {
+      $collection = $this->mongo->getCollection(self::DATABASE_NAME,
+        strtolower($this->datasetName) . 'Options');
 
-			$result = $collection->find([], ['projection' => ['_id' => 0]]);
+      $result = $collection->find([], ['projection' => ['_id' => 0]]);
 
-			$resultArr = iterator_to_array($result);
+      $resultArr = iterator_to_array($result);
 
-			return $resultArr[0];
-		}
-	}
+      return $resultArr[0];
+    }
+  }
 }
 ?>

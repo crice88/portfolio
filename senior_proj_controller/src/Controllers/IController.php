@@ -3,7 +3,7 @@ namespace UCDavis\Controllers;
 
 interface IController
 {
-	public function getDataTable();
-	public function getOptions();
+  public function getDataTable();
+  public function getOptions();
 }
 ?>

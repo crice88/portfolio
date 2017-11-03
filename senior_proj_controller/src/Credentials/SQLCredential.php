@@ -1,6 +1,9 @@
 <?php
 namespace UCDavis\Credentials;
 
+/**
+ * Credential for SQL database
+ */
 class SQLCredential implements ICredential
 {
 	const USERNAME = 'csc191';

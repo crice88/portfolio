@@ -1,9 +1,12 @@
 <?php
 namespace UCDavis\Controllers\Services;
 
+/**
+ * Maps SQL column types to Lavachart types.
+ * Class declared abstract to prevent instantiation.
+ */
 abstract class ColumnTypes
 {
-	// Used for mapping SQL column types with Lavachart types.
 	const COL_VARCHAR  = 'varchar';
 	const COL_INT      = 'int';
 	const COL_DECIMAL  = 'decimal';

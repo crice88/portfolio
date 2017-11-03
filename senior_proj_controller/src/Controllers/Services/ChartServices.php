@@ -5,6 +5,9 @@ use Khill\Lavacharts\Lavacharts;
 use UCDavis\Exceptions\InvalidColumnType;
 use UCDavis\Connections\SQLConnection;
 
+/**
+ * Service class to assist in chart formatting.
+ */
 class ChartServices
 {
 	const LABEL_REGEX = '/(?=[A-Z])|(?=[0-9]{4})/';
@@ -16,6 +19,15 @@ class ChartServices
 	private $types;
 	private $lava;
 
+	/**
+	 * Creates a JSON format chart to be consumed by Google Chart API.
+	 *
+	 * @param PDO[] queryResult Result from PDO query
+	 * @param string[] types Data types
+	 * @param string title Title of the table
+	 * @param string chartType
+	 * @return JSON to be consumed by Google Chart API
+	 */
 	public function createChart($queryResult, $types, $title, $chartType)
 	{
 		$this->lava = new Lavacharts;
@@ -29,7 +41,12 @@ class ChartServices
 		return $chart->getDataTableJson();
 	}
 
-	// Set data that is used to generate a chart.
+	/**
+	 * Set data that is used to generate a chart.
+   
+ 	 * @param string queryResult
+   * @param string types
+	 */
 	private function setData($queryResult, $types)
 	{
 		$this->queryResult = $queryResult;
@@ -39,8 +56,10 @@ class ChartServices
 		$this->types = $types;
 	}
 	
-	// Create each column based on column type and use the array key as a 
-	// header. Keys need to match position with column types. 
+	/** 
+	 * Create each column based on column type and use the array key as a 
+	 * header. Keys need to match position with column types. 
+	 */
 	// TODO: Decrease coupling between column type and key.
 	private function setColumns()
 	{
@@ -88,7 +107,9 @@ class ChartServices
 		}
 	}
 
-	// Populate data table with data from query.
+	/**
+	 * Populate data table with data from query.
+	 */
 	private function setRowData()
 	{
 		foreach ($this->values as $value) {
@@ -96,7 +117,9 @@ class ChartServices
 			$this->dataTable->addRow($this->parseNum(array_values($value)));
 		}
 	}
-
+  /**
+	 * Splits column labels
+	 */
 	private function splitLabels($labels)
 	{
 		$results = array();
@@ -109,7 +132,10 @@ class ChartServices
 		
 		return $results;
 	}
-
+  
+	/**
+	 * Parses numeric values from PDO response.
+	 */
 	private function parseNum($rowValues)
 	{
 		$row = array();

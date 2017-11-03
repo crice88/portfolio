@@ -1,6 +1,11 @@
 <?php
 namespace UCDavis\Controllers\FrontController;
 
+/**
+ * Taken from www.sitepoint.com/fron-controller-pattern-1
+ *
+ * @author Alejandro Gervasio
+ */
 interface IFrontController
 {
 	/**

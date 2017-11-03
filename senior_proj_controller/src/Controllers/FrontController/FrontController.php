@@ -10,7 +10,10 @@ use UCDavis\Exceptions\InvalidAction;
  * FrontController Class
  * 
  * Front controller class that handles routing a request
- * to the appropriate controller class and method.
+ * to the appropriate controller class and method. Pattern
+ * taken from www.sitepoint.com/front-controller-pattern-1
+ *
+ * @author Alejandro Gervasio
  */
 class FrontController implements IFrontController
 {

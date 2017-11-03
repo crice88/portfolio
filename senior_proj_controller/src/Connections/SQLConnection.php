@@ -7,31 +7,20 @@ use UCDavis\DataAccess\DatasetDAO;
 
 class SQLConnection implements IConnection
 {
-	/**
-	 * Connection object
-	 *
-	 * @var PDO Object
-	 */
 	private $connection;
-	
 	private $dbName;
 
-	/**
-	 * Connection
-	 *
-	 * @var boolean
-	 */
 	public $isConnected;
 	
-	/**
-	 * Connection class constructor.
-	 */
 	public function __construct($dbName)
 	{
 		$this->dbName = $dbName;
 		$this->connect();
 	}
-
+	
+	/**
+	 * Connects to a SQL database.
+	 */
 	public function connect()
 	{
 		try {
@@ -62,7 +51,12 @@ class SQLConnection implements IConnection
 			return $result;
 		}
 	}
-
+	/**
+	 * Gets the column info of passed dataset.
+	 *	
+	 * @param string $datasetId ID of dataset
+	 * @return array Returns PDO response
+	 */
 	public function getColumnInfo($datasetId)
 	{	
 		$dao = new DatasetDAO($this->dbName);

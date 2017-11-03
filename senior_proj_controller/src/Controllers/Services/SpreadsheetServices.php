@@ -7,6 +7,9 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Settings;
 
+/**
+ * Service for creating spreadsheets.
+ */
 class SpreadsheetServices
 {
 	const DB_NAME = 'charts';
@@ -27,18 +30,27 @@ class SpreadsheetServices
 		$this->spreadsheet = new Spreadsheet();
 	}
 
+	/**
+	 * Sets document title.
+	 */
 	public function setDocumentProperties()
 	{
 		$this->spreadsheet->getProperties()
 			->setTitle($this->datasetName);
 	}
-
+	
+	/**
+	 * Sets the documents data.
+	 */
 	public function setDocumentData()
 	{
 		$this->setSpreadsheetHeader();
 		$this->setSpreadsheetData();
 	}
 	
+	/**
+	 * Writes document to ouput stream.
+	 */
 	public function saveDocument()
 	{
 		$this->setDocumentProperties();
@@ -54,6 +66,9 @@ class SpreadsheetServices
 		exit;
 	}
 	
+	/**
+	 * Creates HTTP header
+	 */
 	private function httpHeader()
 	{
 		if (array_key_exists($this->fileType, ContentTypes::CONTENT_TYPE_MAP)) {
@@ -64,12 +79,18 @@ class SpreadsheetServices
 			throw new InvalidFileType($this->fileType);
 		}
 	}
-
+  
+	/**
+	 * Gets the streamed files name.
+	 */
 	private function getFileName()
 	{
 		return $this->datasetName . '.' . $this->fileType;
 	}
 
+	/**
+	 * Sets spreadsheets column headers.
+	 */
 	private function setSpreadsheetHeader()
 	{
 		$columnName = 'A';
@@ -84,7 +105,10 @@ class SpreadsheetServices
 			$columnName++;
 		}
 	}
-
+	
+	/**
+	 * Sets spreadsheet data.
+	 */
 	private function setSpreadsheetData()
 	{
 		$row = '2'; // Headers are row 1

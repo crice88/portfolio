@@ -1,6 +1,11 @@
 <?php
 namespace UCDavis\Controllers\Services;
 
+/**
+ * Provides a map of each chart type. Useful
+ * when chart type is received in an incorrect
+ * (not camel case) format.
+ */
 class ChartTypes
 {
 	const CHART_MAP = [

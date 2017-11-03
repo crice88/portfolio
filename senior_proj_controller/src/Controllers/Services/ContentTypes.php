@@ -1,6 +1,10 @@
 <?php
 namespace UCDavis\Controllers\Services;
 
+/**
+ * Provides several consts for use when
+ * exporting various file types.
+ */
 class ContentTypes
 {
 	const BASE_STRING = 'Content-Type: ';

@@ -1,6 +1,9 @@
 <?php
 namespace UCDavis\Controllers\Services;
 
+/**
+ * Provides file type consts.
+ */
 class FileTypes
 {
 	const XLS  = 'xls';

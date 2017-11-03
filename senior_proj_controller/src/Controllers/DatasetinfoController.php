@@ -3,6 +3,9 @@ namespace UCDavis\Controllers;
 
 use UCDavis\DataAccess\DatasetInfoDAO;
 
+/**
+ * Used to retreive info on a dataset
+ */
 class DatasetInfoController
 {
 	const DATABASE_NAME = 'charts';

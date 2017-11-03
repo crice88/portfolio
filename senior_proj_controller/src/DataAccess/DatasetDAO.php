@@ -41,19 +41,29 @@ class DatasetDAO
 		
 		return $result[0]['tablename'];
 	}
+
+	public function deleteDataset($datasetId)
+	{
+		$sql = 'update datasetinfo set delete_dataset=1 where id=' . $datasetId;
+		
+		$result = $this->connection->runQuery($sql);
+		
+		return $result;
+	}
 	
 	public function createDatasetTable($tableName, $headers)
 	{
 		$sql = "create table $tableName (" . $this->createDatasetColumns($headers)
 			. ");";
-
+		// $this->connection->runQuery($sql);
 		echo $sql;
 	}
 
 	public function insertDataset($tableName, $data)
 	{
 		$sql = "insert into $tableName values". $this->createDataString($data);
-
+		
+		// $this->connection->runQuery($sql);
 		echo $sql;
 	}
 
@@ -95,6 +105,19 @@ class DatasetDAO
 		}
 
 		return $insStatement;
+	}
+
+	public function getDatasetChartTypes($chartType) {
+		if ($this->isConnected) {
+			$sql = "select datasetinfo.ID as id, datasetinfo.title, datasetinfo.description, 
+			datasetinfo.TableName as tableName, datasetinfo.featured from datasetinfo, charttype, datasetcharttype 
+			where datasetinfo.ID = datasetcharttype.ID and datasetcharttype.ChartID = charttype.ChartID 
+			and charttype.ChartName='" . $chartType . "' order by featured desc";
+
+			$result = $this->connection->runQuery($sql);
+
+			return $result;
+		}
 	}
 }
 ?>
